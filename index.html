@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="Yawar Munir Photo.jpg">
+    <title>Yawar Munir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0b64c1',
+                        secondary: '#3b82f6',
+                        accent: '#93c5fd',
+                        dark: '#1e293b',
+                        light: '#1973d8',
+                        grey: '#9f9f9f'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Existing styles */
+        body {
+            background-color: #f3f2ee;
+        }
+
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: white transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: --var(bg-primary);
+            border-radius: 3px;
+        }
+
+        /* Sections visible by default (scroll layout) */
+        .scroll-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 80px;
+            /* for fixed navbar */
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Optional: active nav highlight */
+        .nav-active {
+            background-color: #f3f4f6;
+            /* same as hover:bg-light */
+        }
+
+        .content-section {
+            transition: opacity 0.3s ease;
+        }
+
+        .active-section {
+            opacity: 1;
+            display: block;
+        }
+
+        .inactive-section {
+            opacity: 0;
+            display: none;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        /* New responsive navigation styles */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0077B5;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .mobile-nav-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .mobile-nav-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: --var(bg-primary);
+            padding: 0 20px 20px;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 15px;
+            color: white;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+
+        /* profile photo */
+        .image-frame {
+            background: #fff;
+            padding: 8px;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-frame img {
+            display: block;
+            width: 180px;
+            /* adjust as needed */
+            height: 220px;
+            /* adjust as needed */
+            object-fit: cover;
+        }
+
+html, body {
+    overflow-x: hidden;
+}
+
+/* Fix mobile menu behavior */
+.mobile-menu {
+    max-height: 60vh;
+}
+        /* Adjust sidebar for mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .main-content {
+                margin-top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-dark font-sans min-h-screen">
+   
+<!-- Mobile Navigation -->
+<div class="mobile-nav md:hidden w-full bg-white shadow sticky top-0 z-50">
+
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center px-4 py-3">
+        <div class="font-semibold">Yawar Munir</div>
+
+        <button id="mobileMenuBtn" class="text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div id="mobileMenu" class="hidden flex-col px-4 pb-4 gap-3 bg-white">
+
+        <a href="#" id="about-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+            <i class="fas fa-user mr-3"></i> About
+        </a>
+
+        <a href="https://drive.google.com/file/d/1pSEkCbQu2zf1Mq_JEMtxknyv6dqWLW2x/view"
+           target="_blank"
+           class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+            <i class="fas fa-file-alt mr-3"></i> CV
+        </a>
+
+        <a href="#" id="projects-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+            <i class="fas fa-flask mr-3"></i> Projects
+        </a>
+
+    </div>
+</div>
+
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar w-full md:w-64 bg-primary text-white p-6 md:fixed md:h-screen overflow-y-auto">
+
+
+            <div class="flex flex-col items-center text-center  ">
+
+                <div class="image-frame mb-4">
+                    <img src="Yawar Munir Photo.jpg" alt="Profile">
+                </div>
+
+                <h1 class="text-xl font-bold">Yawar Munir</h1>
+
+
+
+
+
+
+
+                <!-- Social Links -->
+                <div class="flex gap-4 mt-4 text-4xl">
+                    <a href="https://linkedin.com/in/yawar363" target="_blank"
+                        class="text-black-600 hover:text-black transition">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/yawer-munir" target="_blank"
+                        class="text-black-600 hover:text-black transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+            <nav class="space-y-2 border-t border-accent mt-3 pt-1">
+                <!-- <button onclick="showSection('about')"
+                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
+                    <i class="fas fa-user mr-3"></i> About
+                </button> -->
+
+                <a href="#" onclick="showSection('about'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
+                    <i class="fas fa-user mr-3"></i> About
+                </a>
+
+                <button onclick="scrollToSection('projects')"
+                    class="nav-btn scroll-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
+                    <i class="fas fa-flask mr-3"></i> Projects
+                </button>
+
+
+                <!-- <button onclick="showSection('cv')"
+                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
+                    <i class="fas fa-file-alt mr-3"></i> CV
+                </button> -->
+                <a href="https://drive.google.com/file/d/1pSEkCbQu2zf1Mq_JEMtxknyv6dqWLW2x/view?usp=drive_link"
+                    target="_blank"
+                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
+                    <i class="fas fa-file-alt mr-3"></i> View CV
+                </a>
+            </nav>
+
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 md:ml-64 main-content">
+
+            <!-- About Section -->
+            <section id="about" class="content-section active-section p-6 md:p-10">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-3xl font-bold text-primary mb-6">About Me</h1>
+
+                    <div class="bg-white rounded-xl p-6 mb-8">
+                        <p class="mb-4">
+                            I did my BS in Computer Science with <strong> 3.99/4.00 CGPA </strong>( <span
+                                style="text-decoration: underline;">1st</span> Position Holder).
+                            Awarded merit-based scholarships throughout my studies, covering my full tuition.
+                        </p>
+
+                        <p>
+                            <a
+                                href="https://www.linkedin.com/posts/yawar363_cs106a-google-learn-activity-7353110256228478976-PwJL">
+                                Taught
+                            </a>
+                            a 6-week Python programming course to <i>International students</i> voluntarily via Zoom at
+                            <strong> Stanford,
+                                Code in Place 2025.</strong>
+                        </p>
+                        <p>
+                            Our team Won 1st place by solving 9/9 puzzles in
+                            <a href="https://www.linkedin.com/posts/yawar363_puzzles-icodeguru-harvard-activity-7316637085593931776-aLcK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEACXLkB_D4TsXM-Qv06ceu1Z9wGXgQC3lo"
+                                class="text-secondary hover:underline" target="_blank">
+                                CS50x Puzzle Day
+                            </a>Competition 2025 and 2026
+                            organized by <strong> Harvard University.</strong>
+
+                        </p>
+                    </div>
+
+                    <!-- Research Section -->
+                    <div class="bg-white rounded-xl p-4 mb-8">
+                        <h1 class="text-2xl font-bold text-primary mb-6" style="display: inline;">
+                            Interests:
+                        </h1>
+
+                        <p style="display: inline;">
+                            Machine Learning, Deep Learning, Design and Analysis of Algorithms, Differential Equations,
+                            Robotics.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <div id="projects" class="bg-white rounded-xl p-6 mb-8 ">
+
+                <!-- Section Title -->
+                <h1 class="text-3xl font-bold text-primary  mb-3 scroll-section">
+                    Projects
+                </h1>
+
+                <!-- Project Card 1 -->
+                <div class="bg-gray-50 rounded-xl p-5 mb-6 shadow-sm hover:shadow-md transition">
+                    <h2 class="text-xl font-semibold text-primary mb-2">
+                        ZeroPhish Gate
+                    </h2>
+                    <p class="text-gray-700 mb-3">
+                        A phishing detection system that analyzes URLs using machine learning techniques and
+                        identifies potential threats in real-time.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Machine
+                            Learning</span>
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Streamlit</span>
+                    </div>
+                    <a href="#" class="text-primary font-medium hover:underline">
+                        View Project →
+                    </a>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-gray-50 rounded-xl p-5 mb-6 shadow-sm hover:shadow-md transition">
+                    <h2 class="text-xl font-semibold text-primary mb-2">
+                        Neural Network Visualizer
+                    </h2>
+                    <p class="text-gray-700 mb-3">
+                        An interactive tool to visualize neural network architectures and understand how layers
+                        and neurons process data.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Deep Learning</span>
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">TensorFlow</span>
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Visualization</span>
+                    </div>
+                    <a href="#" class="text-primary font-medium hover:underline">
+                        View Project →
+                    </a>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-gray-50 rounded-xl p-5 mb-6 shadow-sm hover:shadow-md transition">
+                    <h2 class="text-xl font-semibold text-primary mb-2">
+                        Algorithm Analyzer
+                    </h2>
+                    <p class="text-gray-700 mb-3">
+                        A tool for comparing time and space complexity of various algorithms with interactive
+                        input and graphical output.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Algorithms</span>
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Data
+                            Structures</span>
+                        <span class="bg-primary text-white text-sm px-3 py-1 rounded-full">Visualization</span>
+                    </div>
+                    <a href="#" class="text-primary font-medium hover:underline">
+                        View Project →
+                    </a>
+                </div>
+
+            </div>
+            <script>
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuBtn = document.getElementById("mobileMenuBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    // Toggle menu
+    menuBtn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+    });
+
+    // About
+    document.getElementById("about-link").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        showSection('about');
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        menu.classList.add("hidden"); // close menu
+    });
+
+    // Projects
+    document.getElementById("projects-link").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        showSection('projects');
+
+        const section = document.getElementById("projects");
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+
+        menu.classList.add("hidden"); // close menu
+    });
+
+});
+
+
+
+
+
+                function scrollToSection(sectionId) {
+                    const section = document.getElementById(sectionId);
+
+                    if (section) {
+                        section.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+                    }
+                }
+
+
+                // Section switching function
+                function showSection(sectionId) {
+                    // Hide all sections
+                    document.querySelectorAll('.content-section').forEach(section => {
+                        section.classList.remove('active-section');
+                        section.classList.add('inactive-section');
+                    });
+
+                    // Show selected section
+                    document.getElementById(sectionId).classList.remove('inactive-section');
+                    document.getElementById(sectionId).classList.add('active-section');
+
+                    // Update active buttons
+                    document.querySelectorAll('.nav-btn, .mobile-menu-btn').forEach(btn => {
+                        btn.classList.remove('bg-light');
+                    });
+
+                    // Add active class to current button
+                    document.querySelectorAll('.nav-btn, .mobile-menu-btn').forEach(btn => {
+                        const onclickAttr = btn.getAttribute('onclick');
+
+                        if (onclickAttr && onclickAttr.includes(sectionId)) {
+                            btn.classList.add('bg-light');
+                        }
+                        // if (btn.getAttribute('onclick').includes(sectionId)) {
+                        //     btn.classList.add('bg-light');
+                        // }
+                    });
+
+                    // Close mobile menu after selection
+                    document.getElementById('mobileMenu').classList.remove('active');
+                }
+
+                // Initialize with About section active
+                document.addEventListener('DOMContentLoaded', function () {
+                    showSection('about');
+
+                    // Mobile menu toggle
+                    document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+                        const mobileMenu = document.getElementById('mobileMenu');
+                        mobileMenu.classList.toggle('active');
+                    });
+                });
+
+                // Toggle Button
+                function toggleDetails(icon) {
+                    const parent = icon.parentNode;
+                    const details = parent.querySelector('#details');
+                    if (details.classList.contains('hidden')) {
+                        details.classList.remove('hidden');
+                        icon.classList.remove('fa-angle-right');
+                        icon.classList.add('fa-angle-down');
+                    } else {
+                        details.classList.add('hidden');
+                        icon.classList.remove('fa-angle-down');
+                        icon.classList.add('fa-angle-right');
+                    }
+                }
+            </script>
+</body>
+
+</html>
