@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +7,7 @@
     <link rel="icon" type="image/jpg" href="Yawar Munir Photo.jpg">
     <title>Yawar Munir</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="sidebar.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -173,6 +174,10 @@ html, body {
     overflow-x: hidden;
 }
 
+
+
+
+
 /* Fix mobile menu behavior */
 .mobile-menu {
     max-height: 60vh;
@@ -193,6 +198,11 @@ html, body {
                 margin-top: 70px;
             }
         }
+
+
+
+
+        
     </style>
 </head>
 
@@ -210,96 +220,36 @@ html, body {
         </button>
     </div>
 
-    <!-- Dropdown Menu -->
-    <div id="mobileMenu" class="hidden flex-col px-4 pb-4 gap-3 bg-white">
+   <!-- Dropdown Menu -->
+<div id="mobileMenu" class="hidden flex-col px-4 pb-4 gap-3 bg-white">
 
-        <a href="#" id="about-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
-            <i class="fas fa-user mr-3"></i> About
-        </a>
+    <a href="#" id="about-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-user mr-3"></i> About
+    </a>
 
-        <a href=" "
-           target="_blank"
-           class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
-            <i class="fas fa-file-alt mr-3"></i> CV
-        </a>
+    <a href=" "
+       target="_blank"
+       class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-file-alt mr-3"></i> CV
+    </a>
 
-        <a href="#" id="projects-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
-            <i class="fas fa-flask mr-3"></i> Projects
-        </a>
+    <a href="#" id="projects-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-flask mr-3"></i> Projects
+    </a>
 
-    </div>
+    <a href="teaching.html" id="teaching-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-chalkboard-teacher mr-3"></i> My Lectures
+    </a>
+
+</div>
 </div>
 
 
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar Navigation -->
-        <div class="sidebar w-full md:w-64 bg-primary text-white p-6 md:fixed md:h-screen overflow-y-auto">
+       <!-- sidebar shifted -->
+<div id="sidebar"></div>
 
 
-            <div class="flex flex-col items-center text-center  ">
-
-                <div class="image-frame mb-4">
-                    <img src="Yawar Munir Photo.jpg" alt="Profile">
-                </div>
-
-                <h1 class="text-xl font-bold">Yawar Munir</h1>
-
-
-
-
-
-
-
-                <!-- Social Links -->
-                <div class="flex gap-4 mt-4 text-4xl">
-                    <a href="https://linkedin.com/in/yawar363" target="_blank"
-                        class="text-black-600 hover:text-black transition">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/yawer-munir" target="_blank"
-                        class="text-black-600 hover:text-black transition">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-
-
-
-            </div>
-
-
-
-
-
-            <nav class="space-y-2 border-t border-accent mt-3 pt-1">
-                <!-- <button onclick="showSection('about')"
-                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
-                    <i class="fas fa-user mr-3"></i> About
-                </button> -->
-
-                <a href="#" onclick="showSection('about'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
-                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
-                    <i class="fas fa-user mr-3"></i> About
-                </a>
-
-                <button onclick="scrollToSection('projects')"
-                    class="nav-btn scroll-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
-                    <i class="fas fa-flask mr-3"></i> Projects
-                </button>
-
-
-                <!-- <button onclick="showSection('cv')"
-                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
-                    <i class="fas fa-file-alt mr-3"></i> CV
-                </button> -->
-                <a href=" "
-                    target="_blank"
-                    class="nav-btn w-full text-left py-1 px-4 rounded-lg flex items-center hover:bg-light transition-colors duration-200">
-                    <i class="fas fa-file-alt mr-3"></i> View CV
-                </a>
-            </nav>
-
-
-        </div>
 
         <!-- Main Content -->
         <div class="flex-1 md:ml-64 main-content">
@@ -641,7 +591,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         icon.classList.add('fa-angle-right');
                     }
                 }
-            </script>
+
+
+                 
+
+  
+</script>
+             
 </body>
 
 </html>
