@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="Yawar Munir Photo.jpg">
+    <title>Yawar Munir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="sidebar.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0b64c1',
+                        secondary: '#3b82f6',
+                        accent: '#93c5fd',
+                        dark: '#1e293b',
+                        light: '#1973d8',
+                        grey: '#9f9f9f'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Existing styles */
+        body {
+            background-color: #f3f2ee;
+        }
+
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: white transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: --var(bg-primary);
+            border-radius: 3px;
+        }
+
+        /* Sections visible by default (scroll layout) */
+        .scroll-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 80px;
+            /* for fixed navbar */
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Optional: active nav highlight */
+        .nav-active {
+            background-color: #f3f4f6;
+            /* same as hover:bg-light */
+        }
+
+        .content-section {
+            transition: opacity 0.3s ease;
+        }
+
+        .active-section {
+            opacity: 1;
+            display: block;
+        }
+
+        .inactive-section {
+            opacity: 0;
+            display: none;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        /* New responsive navigation styles */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0077B5;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .mobile-nav-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .mobile-nav-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: --var(bg-primary);
+            padding: 0 20px 20px;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 15px;
+            color: white;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+
+        /* profile photo */
+        .image-frame {
+            background: #fff;
+            padding: 8px;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-frame img {
+            display: block;
+            width: 180px;
+            /* adjust as needed */
+            height: 220px;
+            /* adjust as needed */
+            object-fit: cover;
+        }
+
+html, body {
+    overflow-x: hidden;
+}
+
+
+
+
+
+/* Fix mobile menu behavior */
+.mobile-menu {
+    max-height: 60vh;
+}
+        /* Adjust sidebar for mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .main-content {
+                margin-top: 70px;
+            }
+        }
+
+
+
+
+        
+    </style>
+</head>
+
+<body class="text-dark font-sans min-h-screen">
+   
+<!-- Mobile Navigation -->
+<div class="mobile-nav md:hidden w-full bg-white shadow sticky top-0 z-50">
+
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center px-4 py-3">
+        <div class="font-semibold">Yawar Munir</div>
+
+        <button id="mobileMenuBtn" class="text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+   <!-- Dropdown Menu -->
+<div id="mobileMenu" class="hidden flex-col px-4 pb-4 gap-3 bg-white">
+
+    <a href="index.html" id="about-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-user mr-3"></i> About
+    </a>
+
+    <a href=" "
+       target="_blank"
+       class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-file-alt mr-3"></i> CV
+    </a>
+
+    <a href="#" id="projects-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-flask mr-3"></i> Projects
+    </a>
+
+    <a href="teaching.html" id="teaching-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
+        <i class="fas fa-chalkboard-teacher mr-3"></i> My Lectures
+    </a>
+
+</div>
+</div>
+
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- sidebar shifted -->
+        <!-- Sidebar Navigation -->
+        <div id="sidebar"></div>
+
+
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="flex-1 md:ml-64 p-4 md:p-8">
+
+            <!-- ===== HERO SECTION ===== -->
+            <div class="max-w-5xl mx-auto">
+
+                <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm mb-10">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-primary">
+            Volunteer Teaching Work
+        </h1>
+        
+        <!-- YouTube Channel Button -->
+        <a href="https://www.youtube.com/@yawar363" target="_blank"
+            class="btn-youtube inline-flex items-center gap-3 bg-secondary text-white font-semibold px-6 py-3 rounded-full shadow-md hover:bg-primary transition whitespace-nowrap flex-shrink-0">
+            <i class="fab fa-youtube text-xl"></i>
+            YouTube Channel
+            <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+    </div>
+</div>
+                <!-- ===== LECTURE GALLERY topic wise ===== -->
+                <div class="mt-4">
+                    <h2 class="section-title text-2xl md:text-3xl font-bold text-primary mb-6">
+                        My Lectures
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  
+                  
+                   <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/g8B3D25Ieiw/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Intro to Data Structures and Algorithms | Lecture 1</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/g8B3D25Ieiw" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+<!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/mjcMy3o6Zsw/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Hash Map technique and debudding skills</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>1 hour</span>
+                            </div>
+                            <a href="https://youtu.be/mjcMy3o6Zsw" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+<!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/iV3Dx7cE9J4/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Python Set, Data storage and solving algorithmic problem</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>57 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/iV3Dx7cE9J4" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+
+
+<!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/xvq4fkStl9s/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Stack, its implementation and solving algorithmic problem</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>55 Minutes</span>
+                            </div>
+                            <a href=" https://www.youtube.com/live/xvq4fkStl9s?si=DZrn2f0jPqskofAS" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                   
+
+
+
+                        <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/mYSHn76TWMU/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Queue with implementation and use cases</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>52 Minutes</span>
+                            </div>
+                            <a href=" https://youtu.be/mYSHn76TWMU" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/fx-8bDOYKEc/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Tree, its types and traversal techniques</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>49 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/fx-8bDOYKEc" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    
+
+                        <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/AFBxSIiX2ZU/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Graph fundamentals and Binary Search Tree with its implementation</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>53 Minutes</span>
+                            </div>
+                            <a href="https://www.youtube.com/live/AFBxSIiX2ZU?si=yGomggX2vHXUfKfd" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+ <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/xdJ10CdSl04/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Linked list Data Structure | Solving 3 Leetcode Problems | Lecture 5</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/xdJ10CdSl04" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+ <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/XMFhquUeqLw/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Recursion from Basics with coding examples | Lecture 6 | DSA Course</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/XMFhquUeqLw" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                        <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/-5JE9zowTA4/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Recursion Part-2 | Lecture 7 | Intro to Tree</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/-5JE9zowTA4" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+ <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/IfZpWCyzBh4/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Array Data Structure with Practice Questions | Lecture 3</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/IfZpWCyzBh4" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+ <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/INMmHI_YZVI/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Array Practice Questions on Leetcode | Lecture 2</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/INMmHI_YZVI" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+
+
+                    
+                    
+                     <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/uOZdfeuGPsU/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Recursion Part-2 | Lecture 7 | Intro to Tree</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/uOZdfeuGPsU" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+
+ <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/bu9Fc6_buKo/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Fundamentals of web development and code debudding</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>1 hour 8 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/bu9Fc6_buKo" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/o3Z0bCETKow/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">Introduction of PHP ,funcitons and array in php</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>54 Minutes</span>
+                            </div>
+                            <a href="https://www.youtube.com/live/o3Z0bCETKow?si=YWc34lGNidrKkwD6" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+
+                          <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/up4g6bWwNZI/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark">JavaScript, variables, data types, funcitons and loops</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>54 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/up4g6bWwNZI" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+   <!-- Lecutre card 1 -->
+                    <div class="lecture-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-48 bg-gradient-to-br from-primary/10 to-accent/20">
+                            <!-- YouTube Thumbnail -->
+                            <img src="https://img.youtube.com/vi/_nF_GzfZDrk/mqdefault.jpg" alt="Python Programming"
+                                class="w-full h-full object-cover" />
+                            <!-- Play icon overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition">
+                                <i class="fas fa-play-circle text-6xl text-white/80 hover:text-white transition"></i>
+                            </div>
+                            <!-- Topic tag -->
+                            <span class="absolute bottom-3 right-3 bg-primary/90 text-white text-xs px-3 py-1 rounded-full">
+                                Python
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-semibold text-lg text-dark"> Basic Grammar | Duolingo English Test Preparation | Lecture 1</h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-sm mt-1">
+                                <i class="far fa-clock"></i>
+                                <span>56 Minutes</span>
+                            </div>
+                            <a href="https://youtu.be/_nF_GzfZDrk" target="_blank"
+                                class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+                                Watch <i class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                
+
+            </div>
+
+        </div>
+
+
+
+
+          
+        <!-- ===== FOOTER / BACK LINK ===== -->
+                <div class="mt-12 text-center text-gray-400 text-sm border-t border-gray-200 pt-6">
+                    <a href="index.html" class="text-primary hover:underline">
+                        <i class="fas fa-arrow-left mr-1"></i> Back to Portfolio
+                    </a>
+                </div>
+    </div>
+
+</body>
+
+</html>
