@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,3 +10,375 @@
   <h2>Coming soon...</h2>
 </body>
 </html>
+=======
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Certificates and achievements of Yawar Munir, including competitions, teaching, and academic recognitions." />
+    <title>Certificates · Yawar Munir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="sidebar.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0b64c1',
+                        secondary: '#3b82f6',
+                        accent: '#93c5fd',
+                        dark: '#1e293b',
+                        light: '#1973d8',
+                        grey: '#9f9f9f'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f3f2ee;
+        }
+  
+        .certificate-card {
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px -8px rgba(11, 100, 193, 0.15);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 60%;
+            height: 3px;
+            background: #0b64c1;
+            border-radius: 4px;
+        }
+
+        .cert-badge {
+            background: linear-gradient(135deg, #f3b23a, #f59e0b);
+        }
+
+        .cert-verified {
+            color: #059669;
+        }
+    </style>
+</head>
+
+<body class="text-dark font-sans min-h-screen">
+
+
+<header class="fixed top-0 left-0 right-0 h-16 bg-primary shadow-lg z-50">
+
+    <div class="max-w-7xl mx-auto h-full flex items-center justify-between px-8">
+
+        <a href="index.html"
+            class="text-2xl font-bold text-white">
+            Yawar Munir
+        </a>
+
+        <nav class="hidden md:flex gap-8">
+
+            <a href="index.html#about"
+                class="text-white hover:text-accent transition-colors">
+                About
+            </a>
+
+            <a href="index.html#projects"
+                class="text-white hover:text-accent transition-colors">
+                Projects
+            </a>
+
+            <a href="mailto:yawermunir363@gmail.com?subject=CV%20Request"
+                class="text-white hover:text-accent transition-colors">
+                View CV
+            </a>
+
+            <a href="teaching.html"
+                class="text-white hover:text-accent transition-colors">
+                My Lectures
+            </a>
+
+            <a href="certificates.html"
+                class="text-white hover:text-accent transition-colors">
+                Certifications
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="flex flex-col mt-12 md:flex-row min-h-screen">
+
+         <div id="sidebar"></div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="flex-1 md:ml-64 p-6 md:p-10">
+
+            <div class="max-w-5xl mx-auto">
+
+                 
+
+                <!-- ===== CERTIFICATES GRID ===== -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                   <!-- Certificate 1 -->
+<div class="certificate-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="relative h-48 overflow-hidden">
+        <img src="code_in_place.png"
+             alt="Stanford Code in Place Certificate"
+             class="w-full h-full object-cover">
+
+        <div class="absolute top-3 right-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Verified
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h3 class="font-semibold text-lg text-dark">Stanford Code in Place</h3>
+        <p class="text-sm text-gray-500 mt-1">Teaching Python Programming</p>
+
+        <div class="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span><i class="far fa-calendar-alt mr-1"></i> 2025</span>
+            <span><i class="far fa-building mr-1"></i> Stanford University</span>
+        </div>
+
+        <a href="code_in_place.png"
+           target="_blank"
+           class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+            View Certificate <i class="fas fa-external-link-alt text-xs"></i>
+        </a>
+    </div>
+</div>
+                    <!-- Certificate 2 -->
+                     
+
+<div class="certificate-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="relative h-48 overflow-hidden">
+        <img src="harvard_uni.jpg"
+             alt="Stanford Code in Place Certificate"
+             class="w-full h-full object-cover">
+
+        <div class="absolute top-3 right-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Verified
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h3 class="font-semibold text-lg text-dark">CS50x Puzzle Day</h3>
+        <p class="text-sm text-gray-500 mt-1">1st Place Winner</p>
+
+        <div class="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span><i class="far fa-calendar-alt mr-1"></i> 2025-2026</span>
+            <span><i class="far fa-building mr-1"></i> Harvard University</span>
+        </div>
+
+        <a href="harvard_uni.jpg"
+           target="_blank"
+           class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+            View Certificate <i class="fas fa-external-link-alt text-xs"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Certificate 3   -->
+<div class="certificate-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="relative h-48 overflow-hidden">
+        <img src="calico spring 26.png"
+             alt="Stanford Code in Place Certificate"
+             class="w-full h-full object-cover">
+
+        <div class="absolute top-3 right-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Verified
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h3 class="font-semibold text-lg text-dark">Calico Coding Competition</h3>
+        <p class="text-sm text-gray-500 mt-1">Python Programming</p>
+
+        <div class="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span><i class="far fa-calendar-alt mr-1"></i> 2026</span>
+            <span><i class="far fa-building mr-1"></i> UC Berkeley</span>
+        </div>
+
+        <a href="calico spring 26.png"
+           target="_blank"
+           class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+            View Certificate <i class="fas fa-external-link-alt text-xs"></i>
+        </a>
+    </div>
+</div>
+                   
+
+<!-- Certificate 3   -->
+<div class="certificate-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="relative h-48 overflow-hidden">
+        <img src="Web Developer Trainer image.jpg"
+             alt="Stanford Code in Place Certificate"
+             class="w-full h-full object-cover">
+
+        <div class="absolute top-3 right-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Verified
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h3 class="font-semibold text-lg text-dark">Web Developement Trainer</h3>
+        <p class="text-sm text-gray-500 mt-1">Teaching JavaScript and PHP</p>
+
+        <div class="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span><i class="far fa-calendar-alt mr-1"></i> 2026</span>
+            <span><i class="far fa-building mr-1"></i> iCodeGuru and WPBrigade</span>
+        </div>
+
+        <a href="Web Developer Trainer image.jpg"
+           target="_blank"
+           class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+            View Certificate <i class="fas fa-external-link-alt text-xs"></i>
+        </a>
+    </div>
+</div>
+
+                   <!-- Certificate 3   -->
+<div class="certificate-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="relative h-48 overflow-hidden">
+        <img src="wordsprint winner_page-0001.jpg"
+             alt="Stanford Code in Place Certificate"
+             class="w-full h-full object-cover">
+
+        <div class="absolute top-3 right-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Verified
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h3 class="font-semibold text-lg text-dark">Hackathon Winner - 1st place</h3>
+        <p class="text-sm text-gray-500 mt-1">Wordsprint Developer Hackathon</p>
+
+        <div class="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span><i class="far fa-calendar-alt mr-1"></i> 2025</span>
+            <span><i class="far fa-building mr-1"></i> WPBrigade</span>
+        </div>
+
+        <a href="wordsprint winner_page-0001.jpg"
+           target="_blank"
+           class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+            View Certificate <i class="fas fa-external-link-alt text-xs"></i>
+        </a>
+    </div>
+</div>
+
+
+<!-- Certificate 3   -->
+                   <div class="certificate-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="relative h-48 overflow-hidden">
+        <img src="gold_medal.jpeg"
+             alt="Stanford Code in Place Certificate"
+             class="w-full h-full object-cover">
+
+        <div class="absolute top-3 right-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Verified
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h3 class="font-semibold text-lg text-dark">Ranked 1st - Gold Medal</h3>
+        <p class="text-sm text-gray-500 mt-1">Distinction Award</p>
+
+        <div class="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span><i class="far fa-calendar-alt mr-1"></i>2026</span>
+            <span><i class="far fa-building mr-1"></i> University of Science and Technology Bannu</span>
+        </div>
+
+        <a href="https://drive.google.com/file/d/1HWg__1AwBeVFpoO2SBRezhp9QT6nAf-o/view?usp=sharing"
+           target="_blank"
+           class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+            View Certificate <i class="fas fa-external-link-alt text-xs"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Certificate 5 -->
+            <div class="certificate-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="relative h-48 overflow-hidden">
+        <img src="Data Science Coursera_page.jpg"
+             alt="Stanford Code in Place Certificate"
+             class="w-full h-full object-cover">
+
+        <div class="absolute top-3 right-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Verified
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h3 class="font-semibold text-lg text-dark">Foundations of Data Science</h3>
+        <p class="text-sm text-gray-500 mt-1">Course</p>
+
+        <div class="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span><i class="far fa-calendar-alt mr-1"></i>2026</span>
+            <span><i class="far fa-building mr-1"></i> Google, Coursera</span>
+        </div>
+
+        <a href="Data Science Coursera_page.jpg"
+           target="_blank"
+           class="inline-flex items-center gap-2 text-primary font-medium mt-4 hover:underline">
+            View Certificate <i class="fas fa-external-link-alt text-xs"></i>
+        </a>
+    </div>
+</div>
+                    
+
+                </div>
+
+                <!-- ===== CERTIFICATE STATS ===== -->
+                <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                        <div class="text-2xl font-bold text-primary">6+</div>
+                        <div class="text-sm text-gray-500">Certificates</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                        <div class="text-2xl font-bold text-primary">4</div>
+                        <div class="text-sm text-gray-500">Institutions</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                        <div class="text-2xl font-bold text-primary">3</div>
+                        <div class="text-sm text-gray-500">Competitions</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                        <div class="text-2xl font-bold text-primary">100%</div>
+                        <div class="text-sm text-gray-500">Verified</div>
+                    </div>
+                </div>
+
+                <!-- ===== BACK LINK ===== -->
+                <div class="mt-12 text-center text-gray-400 text-sm border-t border-gray-200 pt-6">
+                    <a href="index.html" class="text-primary hover:underline">
+                        <i class="fas fa-arrow-left mr-1"></i> Back to Portfolio
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+>>>>>>> 0d89b7f (Update certificates section and portfolio improvements)
