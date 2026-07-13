@@ -1,17 +1,9 @@
-<<<<<<< HEAD
- <!DOCTYPE html>
-=======
 <!DOCTYPE html>
->>>>>>> 0d89b7f (Update certificates section and portfolio improvements)
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-=======
-    <meta name="description" content="Portfolio of Yawar Munir, AI Engineer and lecturer, featuring projects, teaching, and certifications.">
->>>>>>> 0d89b7f (Update certificates section and portfolio improvements)
     <link rel="icon" type="image/jpg" href="Yawar Munir Photo.jpg">
     <title>Yawar Munir</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -215,49 +207,10 @@ html, body {
 </head>
 
 <body class="text-dark font-sans min-h-screen">
-<<<<<<< HEAD
+ 
    
-<!-- Mobile Navigation -->
-<div class="mobile-nav md:hidden w-full bg-white shadow sticky top-0 z-50">
 
-    <!-- Top Bar -->
-    <div class="flex justify-between items-center px-4 py-3">
-        <div class="font-semibold">Yawar Munir</div>
-
-        <button id="mobileMenuBtn" class="text-2xl">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-
-   <!-- Dropdown Menu -->
-<div id="mobileMenu" class="hidden flex-col px-4 pb-4 gap-3 bg-white">
-
-    <a href="#" id="about-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
-        <i class="fas fa-user mr-3"></i> About
-    </a>
-
-    <a href=" "
-       target="_blank"
-       class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
-        <i class="fas fa-file-alt mr-3"></i> CV
-    </a>
-
-    <a href="#" id="projects-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
-        <i class="fas fa-flask mr-3"></i> Projects
-    </a>
-
-    <a href="teaching.html" id="teaching-link" class="nav-btn flex items-center py-2 px-3 rounded-lg hover:bg-light">
-        <i class="fas fa-chalkboard-teacher mr-3"></i> My Lectures
-    </a>
-
-</div>
-</div>
-
-
-    <div class="flex flex-col md:flex-row min-h-screen">
-       <!-- sidebar shifted -->
-<div id="sidebar"></div>
-=======
+    <body>
 
     <!-- Top Navigation -->
 <header class="fixed top-0 left-0 right-0 h-16 bg-primary shadow-lg z-50">
@@ -281,7 +234,7 @@ html, body {
                 Projects
             </a>
 
-            <a href="mailto:yawermunir363@gmail.com?subject=CV%20Request"
+            <a href=""
                 class="text-white hover:text-accent transition-colors">
                 View CV
             </a>
@@ -310,21 +263,10 @@ html, body {
         <!-- Sidebar -->
         <div id="sidebar"></div>
 
->>>>>>> 0d89b7f (Update certificates section and portfolio improvements)
 
-
+ 
 
         <!-- Main Content -->
-<<<<<<< HEAD
-        <div class="flex-1 md:ml-64 main-content">
-
-            <!-- About Section -->
-            <section id="about" class="content-section active-section p-6 md:p-10">
-                <div class="max-w-4xl mx-auto">
-                    <h1 class="text-3xl font-bold text-primary mb-6">About Me</h1>
-
-                    <div class="bg-white rounded-xl p-6 mb-8">
-=======
         <div class="flex-1 md:ml-64 main-content mt-12">
  
 
@@ -334,7 +276,6 @@ html, body {
                     <h1 class="text-3xl font-bold text-primary mb-6">About Me</h1>
 
                     <div class="bg-white rounded-xl p-6 mb-4">
->>>>>>> 0d89b7f (Update certificates section and portfolio improvements)
                         <p class="mb-4">
                             I did my BS in Computer Science with <strong> 3.99/4.00 CGPA </strong>( <span
                                 style="text-decoration: underline;">1st</span> Position Holder).
@@ -361,15 +302,9 @@ html, body {
                         </p>
                     </div>
 
-<<<<<<< HEAD
-                   <!-- Research Section -->
-                    <div class="bg-white rounded-xl p-3 ">
-                        <h1 class="text-2xl font-bold text-primary mb-4" style="display: inline;">
-=======
                     <!-- Research Section -->
                     <div class="bg-white rounded-xl p-3 ">
                         <h1 class="text-2xl font-bold text-primary mb-2" style="display: inline;">
->>>>>>> 0d89b7f (Update certificates section and portfolio improvements)
                             Interests:
                         </h1>
 
@@ -559,131 +494,8 @@ html, body {
                 
 
             </div>
-<<<<<<< HEAD
-            <script>
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const menuBtn = document.getElementById("mobileMenuBtn");
-    const menu = document.getElementById("mobileMenu");
-
-    // Toggle menu
-    menuBtn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
-    });
-
-    // About
-    document.getElementById("about-link").addEventListener("click", function (e) {
-        e.preventDefault();
-
-        showSection('about');
-        window.scrollTo({ top: 0, behavior: "smooth" });
-
-        menu.classList.add("hidden"); // close menu
-    });
-
-    // Projects
-    document.getElementById("projects-link").addEventListener("click", function (e) {
-        e.preventDefault();
-
-        showSection('projects');
-
-        const section = document.getElementById("projects");
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
-
-        menu.classList.add("hidden"); // close menu
-    });
-
-});
-
-
-
-
-
-                function scrollToSection(sectionId) {
-                    const section = document.getElementById(sectionId);
-
-                    if (section) {
-                        section.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start"
-                        });
-                    }
-                }
-
-
-                // Section switching function
-                function showSection(sectionId) {
-                    // Hide all sections
-                    document.querySelectorAll('.content-section').forEach(section => {
-                        section.classList.remove('active-section');
-                        section.classList.add('inactive-section');
-                    });
-
-                    // Show selected section
-                    document.getElementById(sectionId).classList.remove('inactive-section');
-                    document.getElementById(sectionId).classList.add('active-section');
-
-                    // Update active buttons
-                    document.querySelectorAll('.nav-btn, .mobile-menu-btn').forEach(btn => {
-                        btn.classList.remove('bg-light');
-                    });
-
-                    // Add active class to current button
-                    document.querySelectorAll('.nav-btn, .mobile-menu-btn').forEach(btn => {
-                        const onclickAttr = btn.getAttribute('onclick');
-
-                        if (onclickAttr && onclickAttr.includes(sectionId)) {
-                            btn.classList.add('bg-light');
-                        }
-                        // if (btn.getAttribute('onclick').includes(sectionId)) {
-                        //     btn.classList.add('bg-light');
-                        // }
-                    });
-
-                    // Close mobile menu after selection
-                    document.getElementById('mobileMenu').classList.remove('active');
-                }
-
-                // Initialize with About section active
-                document.addEventListener('DOMContentLoaded', function () {
-                    showSection('about');
-
-                    // Mobile menu toggle
-                    document.getElementById('mobileMenuBtn').addEventListener('click', function () {
-                        const mobileMenu = document.getElementById('mobileMenu');
-                        mobileMenu.classList.toggle('active');
-                    });
-                });
-
-                // Toggle Button
-                function toggleDetails(icon) {
-                    const parent = icon.parentNode;
-                    const details = parent.querySelector('#details');
-                    if (details.classList.contains('hidden')) {
-                        details.classList.remove('hidden');
-                        icon.classList.remove('fa-angle-right');
-                        icon.classList.add('fa-angle-down');
-                    } else {
-                        details.classList.add('hidden');
-                        icon.classList.remove('fa-angle-down');
-                        icon.classList.add('fa-angle-right');
-                    }
-                }
-
-
-                 
-
-  
-</script>
-             
-=======
-            
-      
->>>>>>> 0d89b7f (Update certificates section and portfolio improvements)
+ 
+ 
 </body>
 
 </html>
