@@ -1,0 +1,75 @@
+
+/* Baseline rules that got lost when certificates.html's inline <style> was commented out.
+   Safe to apply everywhere: it only restores intended sizing, doesn't change desktop layout. */
+.image-frame img {
+  width: 180px;
+  height: 220px;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  /* Kill the old half-built mobile bar that overlaps the real header */
+  .mobile-nav { display: none !important; }
+
+  /* Push content below the fixed header instead of overlapping it */
+  header + div { margin-top: 64px !important; }
+
+  /* Show the sidebar instead of hiding it — stack it above content */
+  .sidebar {
+    display: block !important;
+    position: static !important;
+    height: auto !important;
+    width: 100% !important;
+    padding: 20px !important;
+  }
+
+  /* Shrink the profile photo so it doesn't dominate small screens */
+  .image-frame img {
+    width: 120px !important;
+    height: 150px !important;
+  }
+
+  /* Tighten header padding, keep room for hamburger button */
+  header .max-w-7xl { padding-left: 16px !important; padding-right: 16px !important; }
+  header a.text-2xl { font-size: 1.15rem !important; }
+
+  /* Hamburger button injected by mobile-nav.js */
+
+
+  #mnav-toggle { display: inline-flex !important; }
+
+  /* Dropdown menu injected by mobile-nav.js */
+  #mnav-panel {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #0b64c1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+    z-index: 40;
+  }
+  #mnav-panel.open { max-height: 400px; }
+  #mnav-panel a {
+    display: block;
+    color: #fff;
+    padding: 14px 20px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    text-decoration: none;
+  }
+  #mnav-panel a:hover { background: rgba(255,255,255,.1); }
+
+  /* Avoid long headings/text forcing horizontal scroll */
+  h1, h2, h3 { word-break: break-word; }
+}
+
+/* Safety net: never show mobile-only elements on desktop */
+@media (min-width: 769px) {
+  #mnav-toggle, #mnav-panel { display: none !important; }
+}
