@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Certificates and achievements of Yawar Munir, including competitions, teaching, and academic recognitions." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="description" content="Certificates and achievements of Yawar Munir, including competitions, teaching, and academic recognitions." /> -->
     <title>Certificates · Yawar Munir</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="sidebar.js"></script>
+    <link rel="stylesheet" href="mobile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script>
         tailwind.config = {
@@ -25,42 +26,23 @@
             }
         }
     </script>
-    <style>
-        body {
-            background-color: #f3f2ee;
-        }
-  
-        .certificate-card {
-            transition: transform 0.25s ease, box-shadow 0.3s ease;
-        }
-
-        .certificate-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px -8px rgba(11, 100, 193, 0.15);
-        }
-
-        .section-title {
-            position: relative;
+   <style>
+        
+        /* profile photo */
+        .image-frame {
+            background: #fff;
+            padding: 8px;
             display: inline-block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 60%;
-            height: 3px;
-            background: #0b64c1;
-            border-radius: 4px;
-        }
-
-        .cert-badge {
-            background: linear-gradient(135deg, #f3b23a, #f59e0b);
-        }
-
-        .cert-verified {
-            color: #059669;
+        .image-frame img {
+            display: block;
+            width: 180px;
+            /* adjust as needed */
+            height: 220px;
+            /* adjust as needed */
+            object-fit: cover;
         }
     </style>
 </head>
@@ -68,6 +50,7 @@
 <body class="text-dark font-sans min-h-screen">
 
 
+ <!-- Top Navigation -->
 <header class="fixed top-0 left-0 right-0 h-16 bg-primary shadow-lg z-50">
 
     <div class="max-w-7xl mx-auto h-full flex items-center justify-between px-8">
@@ -89,7 +72,7 @@
                 Projects
             </a>
 
-            <a href="mailto:yawermunir363@gmail.com?subject=CV%20Request"
+            <a href=""
                 class="text-white hover:text-accent transition-colors">
                 View CV
             </a>
@@ -113,7 +96,6 @@
 
     <!-- ===== MAIN WRAPPER ===== -->
     <div class="flex flex-col mt-12 md:flex-row min-h-screen">
-
          <div id="sidebar"></div>
 
         <!-- ===== MAIN CONTENT ===== -->
@@ -367,6 +349,7 @@
         </div>
     </div>
 
+    <script src="mobile-nav.js"></script>
 </body>
 
 </html>
