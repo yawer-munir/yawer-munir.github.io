@@ -13,6 +13,14 @@ html, body {
 }
 
 @media (max-width: 768px) {
+.page-certificates .sidebar {
+    display: none !important;
+  }
+  .page-teaching .sidebar {
+    display: none !important;
+  }
+
+
   /* Kill the old half-built mobile bar that overlaps the real header */
   .mobile-nav { display: none !important; }
 
